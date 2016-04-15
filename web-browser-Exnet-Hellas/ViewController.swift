@@ -34,12 +34,14 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
     //This function leads the webview one page back
     @IBAction func backTapped(sender: AnyObject) {
         self.webView.goBack()
+        checkButtons()
         
     }
     
     //This function leads the webview one page forward
     @IBAction func forwardTapped(sender: AnyObject) {
         self.webView.goForward()
+        checkButtons()
         
     }
     
