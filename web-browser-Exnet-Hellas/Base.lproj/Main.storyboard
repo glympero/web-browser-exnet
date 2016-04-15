@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -27,25 +28,34 @@
                                     <color key="textColor" red="0.5450980392" green="0.76470588240000004" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Lympe's Browser" id="WOX-E5-y50">
+                                    <navigationItem id="WOX-E5-y50">
+                                        <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="kZK-ha-8nD">
                                             <connections>
                                                 <action selector="backTapped:" destination="BYZ-38-t0r" id="Bh1-Oj-Lmw"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="O71-i6-076">
-                                            <connections>
-                                                <action selector="forwardTapped:" destination="BYZ-38-t0r" id="k7Z-Kz-Jb9"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" textAlignment="natural" minimumFontSize="17" id="TBb-UG-PK4">
+                                            <rect key="frame" x="61" y="7" width="430" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="fastForward" id="O71-i6-076">
+                                                <connections>
+                                                    <action selector="forwardTapped:" destination="BYZ-38-t0r" id="k7Z-Kz-Jb9"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="search" id="s2u-8f-5ux">
+                                                <connections>
+                                                    <action selector="searchTapped:" destination="BYZ-38-t0r" id="VvU-ob-Zww"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IgT-Ro-uVn">
-                                <rect key="frame" x="20" y="20" width="455" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -63,6 +73,7 @@
                     <connections>
                         <outlet property="backButton" destination="kZK-ha-8nD" id="eyD-6V-aft"/>
                         <outlet property="forwardButton" destination="O71-i6-076" id="eDz-Gl-G1X"/>
+                        <outlet property="urlTextField" destination="TBb-UG-PK4" id="yT5-1f-YKj"/>
                         <outlet property="webView" destination="waj-5N-NrG" id="sqh-8c-sWQ"/>
                     </connections>
                 </viewController>

@@ -8,39 +8,66 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIWebViewDelegate {
-
+class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
+    
+    //The view that containes the browser
     @IBOutlet weak var webView: UIWebView!
+    //The button that is responsible for going one page back
     @IBOutlet weak var backButton: UIBarButtonItem!
+    //The button that is responsible for going one page forward
     @IBOutlet weak var forwardButton: UIBarButtonItem!
+    //The text area where user enters a url to browse
+    @IBOutlet weak var urlTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.urlTextField.delegate = self
         self.webView.delegate = self
-        loadRequest("http://www.google.com")
+        //Loading google.com by default
+        loadRequest("bing.com")
+        //Check if buttons should be enabled or not
         checkButtons()
         
     }
-
+    
+    //This function leads the webview one page back
     @IBAction func backTapped(sender: AnyObject) {
         self.webView.goBack()
-        checkButtons()
-    }
-
-    @IBAction func forwardTapped(sender: AnyObject) {
-        self.webView.goForward()
-        checkButtons()
-    }
-    
-    func loadRequest(urlStr: String){
-        let urlStr = urlStr
-        let url = NSURL(string: urlStr)!
-        let request = NSURLRequest(URL: url)
-        webView.loadRequest(request)
         
     }
     
+    //This function leads the webview one page forward
+    @IBAction func forwardTapped(sender: AnyObject) {
+        self.webView.goForward()
+        
+    }
+    
+    //This function loads the requested url from user
+    @IBAction func searchTapped(sender: AnyObject) {
+        search()
+    }
+    
+    //This function takes as a parameter a string
+    //checks if it containes the "http://" prefix
+    //and then loads the requested URL to the webview
+    func loadRequest(urlStr: String){
+        
+        var urlString = ""
+        
+        if urlStr.hasPrefix("http://") { // true
+            urlString = urlStr + "/"
+        }else{
+            urlString = "http://" + urlStr + "/"
+        }
+        let url = NSURL(string: urlString)!
+        let request = NSURLRequest(URL: url)
+        webView.loadRequest(request)
+    }
+    
+    //This functions checks if back and forward buttons
+    //can actually go back or forward and it enables them
+    //or disable them accordingly
     func checkButtons(){
         if self.webView.canGoBack{
             self.backButton.enabled = true
@@ -57,8 +84,34 @@ class ViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    //This function checks if textfield is empty
+    //if empty - loads as default bing.com
+    //otherwise loads the requests URL
+    func search(){
+        if(urlTextField.text == ""){
+            loadRequest("bing.com")
+        }else{
+            loadRequest(urlTextField.text!)
+        }
+    }
+    
+    //Check after finishing the page load to see if
+    //buttons should be enabled or not
     func webViewDidFinishLoad(webView: UIWebView) {
+        urlTextField.text = webView.request!.URL!.absoluteString
         checkButtons()
+    }
+    
+    //if URL is wrong or incomplete, it loads the default "bing.com"
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        loadRequest("bing.com")
+    }
+    
+    //Enable the return key to search inside the textfield
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        search()
+        return true
     }
 }
 
