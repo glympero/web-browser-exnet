@@ -18,19 +18,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waj-5N-NrG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCf-hj-OWE">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.5450980392" green="0.76470588240000004" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Lympe's Browser" id="WOX-E5-y50">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="kZK-ha-8nD">
+                                            <connections>
+                                                <action selector="backTapped:" destination="BYZ-38-t0r" id="Bh1-Oj-Lmw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="O71-i6-076">
+                                            <connections>
+                                                <action selector="forwardTapped:" destination="BYZ-38-t0r" id="k7Z-Kz-Jb9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IgT-Ro-uVn">
+                                <rect key="frame" x="20" y="20" width="455" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="waj-5N-NrG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Qhs-9C-x21"/>
-                            <constraint firstItem="waj-5N-NrG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tjj-IP-cuV"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="waj-5N-NrG" secondAttribute="bottom" constant="60" id="kYv-yc-vrY"/>
-                            <constraint firstAttribute="trailing" secondItem="waj-5N-NrG" secondAttribute="trailing" id="loc-hF-4Nm"/>
+                            <constraint firstItem="waj-5N-NrG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6ej-Br-Pxk"/>
+                            <constraint firstAttribute="bottom" secondItem="yCf-hj-OWE" secondAttribute="bottom" id="GM1-XU-Fqd"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="waj-5N-NrG" secondAttribute="bottom" id="cW2-U2-Dbs"/>
+                            <constraint firstAttribute="trailing" secondItem="yCf-hj-OWE" secondAttribute="trailing" id="gG9-L5-Eqj"/>
+                            <constraint firstItem="yCf-hj-OWE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jcu-r1-0UY"/>
+                            <constraint firstItem="waj-5N-NrG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oYg-FQ-C86"/>
+                            <constraint firstAttribute="trailing" secondItem="waj-5N-NrG" secondAttribute="trailing" id="xiu-Px-UBN"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="kZK-ha-8nD" id="eyD-6V-aft"/>
+                        <outlet property="forwardButton" destination="O71-i6-076" id="eDz-Gl-G1X"/>
                         <outlet property="webView" destination="waj-5N-NrG" id="sqh-8c-sWQ"/>
                     </connections>
                 </viewController>
